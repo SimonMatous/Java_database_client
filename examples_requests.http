@@ -1,0 +1,180 @@
+POST http://localhost:8080/location
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"state": "TestState", "town": "TestTown","address": null}
+
+###
+
+POST http://localhost:8080/location
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"state": "TestState", "town": "TestTown","address": null}
+
+###
+
+POST http://localhost:8080/studio
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "Studioname", "founding_date": "1980-01-01T00:00:01", "Location_id":1}
+
+###
+
+POST http://localhost:8080/studio
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "StudioName2", "founding_date": "1910-01-01T00:00:01", "Location_id":2}
+
+
+
+###
+
+POST http://localhost:8080/software
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"software_name": "Steam", "founded_in": "1999-01-01T00:00:01"}
+
+###
+
+POST http://localhost:8080/software
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"software_name": "Origin", "founded_in": "2000-01-01T00:00:01"}
+
+###
+
+POST http://localhost:8080/software
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"software_name": "EpicGames", "founded_in": "2010-01-01T00:00:01"}
+
+###
+
+POST http://localhost:8080/game
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "CounterStrike", "hardware": "PC","release_date" : "1980-01-01T00:00:01","software_ids":[1,3],"studio_id": 1}
+
+###
+
+POST http://localhost:8080/game
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "RDR2", "hardware": "PS4","release_date" : "1980-01-01T00:00:01","software_ids":[2],"studio_id": 1}
+
+###
+
+POST http://localhost:8080/savefile
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "SAVE-01", "saved_at": "1999-01-01T00:00:01","PercOfGameFinished" : 90,"game_id":1}
+
+###
+
+PUT http://localhost:8080/location/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"state": "TestState", "town": "TestTown","address": "TestAddressPUT"}
+
+###
+
+PUT http://localhost:8080/studio/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "ChangedTitlePUT", "founding_date": "1980-01-01T00:00:01", "Location_id":1}
+
+
+###
+
+PUT http://localhost:8080/software/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"software_name": "SteamPUT", "founded_in": "1999-01-01T00:00:01"}
+
+###
+
+PUT http://localhost:8080/game/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "CounterStrikePUT", "hardware": "PCPUT","release_date" : "1980-01-01T00:00:01","software_ids":[1],"studio_id": 1}
+
+###
+
+PUT http://localhost:8080/savefile/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name": "newSAVE-02PUT", "saved_at": "1999-01-01T00:00:01","PercOfGameFinished" : 1,"game_id":1}
+
+###
+
+GET http://localhost:8080/location/2
+###
+GET http://localhost:8080/location/all
+###
+
+GET http://localhost:8080/studio/2
+###
+GET http://localhost:8080/studio/all
+###
+
+
+GET http://localhost:8080/software/2
+###
+GET http://localhost:8080/software/all
+###
+
+GET http://localhost:8080/game/2
+###
+GET http://localhost:8080/game/all
+###
+
+GET http://localhost:8080/savefile/2
+###
+GET http://localhost:8080/savefile/all
+###
+
+DELETE http://localhost:8080/game/2
+###
+
+DELETE http://localhost:8080/software/2
+###
+
+DELETE http://localhost:8080/savefile/1
+###
+DELETE http://localhost:8080/studio/2
+###
+DELETE http://localhost:8080/location/2
+###
+
+
+
+
