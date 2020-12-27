@@ -47,8 +47,7 @@ public class locationResource {
     }
 
     public ResponseEntity<locationDTO[]> readAll(){
-        return restTemplate.exchange(ALL,
-                HttpMethod.GET, null , locationDTO[].class);
+        return restTemplate.exchange(ALL, HttpMethod.GET, null , locationDTO[].class);
     }
 
     public void deleteVoid(int id){
