@@ -43,4 +43,14 @@ public class locationDTO {
         locationDTO that = (locationDTO) obj;
         return id == that.id;
     }
+
+    @Override
+    public String toString() {
+        return "locationDTO{" +
+                "id=" + id +
+                ", state='" + state + '\'' +
+                ", town='" + town + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

@@ -35,4 +35,13 @@ public class softwareDTO {
         softwareDTO that = (softwareDTO) obj;
         return id == that.id;
     }
+
+    @Override
+    public String toString() {
+        return "softwareDTO{" +
+                "id=" + id +
+                ", software_name='" + software_name + '\'' +
+                ", founded_in=" + founded_in +
+                '}';
+    }
 }

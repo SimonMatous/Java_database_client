@@ -1,6 +1,5 @@
 package cz.cvut.fit.matousi1.dto;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -15,7 +14,7 @@ public class studioCreateDTO {
     @JsonProperty("Location_id")
     private final int Location_id;
 
-    @JsonCreator
+
     public studioCreateDTO(String name, Timestamp founding_date, int location_id) {
         this.name = name;
         this.founding_date = founding_date;

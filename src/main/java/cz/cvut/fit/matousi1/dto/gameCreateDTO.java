@@ -20,7 +20,6 @@ public class gameCreateDTO {
     private int studio_id;
 
 
-    @JsonCreator
     public gameCreateDTO(String name, String hardware, Timestamp release_date, List<Integer> software_ids, int studio_id) {
         this.name = name;
         this.hardware = hardware;

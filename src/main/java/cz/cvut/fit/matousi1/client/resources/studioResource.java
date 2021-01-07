@@ -18,9 +18,9 @@ public class studioResource {
     }
 
     private static final String ROOT = "http://localhost:8080/studio";
-    private static final String CREATE = ROOT + "/create";
-    private static final String UPDATE = ROOT + "/update/{id}";
-    private static final String DELETE = ROOT + "/delete/{id}";
+    private static final String CREATE = ROOT;
+    private static final String UPDATE = ROOT + "/{id}";
+    private static final String DELETE = ROOT + "/{id}";
     private static final String BYID = ROOT + "/{id}";
     private static final String ALL = ROOT + "/all";
 

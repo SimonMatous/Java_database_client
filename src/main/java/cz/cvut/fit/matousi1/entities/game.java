@@ -51,6 +51,7 @@ public class game {
         this.release_date = release_date;
         this.Studio = studio;
         this.softwares = softwares;
+
     }
 
     public Timestamp getRelease_date() {

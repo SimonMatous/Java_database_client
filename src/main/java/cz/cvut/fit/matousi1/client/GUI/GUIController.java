@@ -1,18 +1,14 @@
 package cz.cvut.fit.matousi1.client.GUI;
 
 
-import org.hibernate.cache.spi.support.SimpleTimestamper;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+
 
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import cz.cvut.fit.matousi1.dto.*;
 import cz.cvut.fit.matousi1.client.resources.*;
@@ -61,12 +57,12 @@ public class GUIController {
     }
 
     private boolean EvaluateMainMenu() {
-        out.println("\n  Pick an entity to use:\n");
-        out.println(" 1 - GAME"    );
-        out.println(" 2 - LOCATION");
-        out.println(" 3 - SAVEFILE");
-        out.println(" 4 - SOFTWARE");
-        out.println(" 5 - STUDIO"  );
+        out.println("\n========MAIN_MENU========\n");
+        out.println("  1 - GAME"    );
+        out.println("  2 - LOCATION");
+        out.println("  3 - SAVEFILE");
+        out.println("  4 - SOFTWARE");
+        out.println("  5 - STUDIO"  );
         out.println(" -1 - END"    );
 
         while (true){
@@ -97,20 +93,34 @@ public class GUIController {
     }
 
     private boolean GetActionInput() {
+
         while(true){
-            out.println(" 0 - FIND BY ID");
-            out.println(" 1 - FIND ALL");
-            out.println(" 2 - CREATE");
-            out.println(" 3 - UPDATE");
-            out.println(" 4 - DELETE");
+            if(current == Entity.GAME)
+                out.println("  ========GAME========\n");
+            else if(current == Entity.LOCATION)
+                out.println("  ========LOCATION========\n");
+            else if(current == Entity.SAVEFILE)
+                out.println("  ========SAVEFILE========\n");
+            else if(current == Entity.SOFTWARE)
+                out.println("  ========SOFTWARE========\n");
+            else if(current == Entity.STUDIO)
+                out.println("  ========STUDIO========\n");
+
+            out.println("  0 - FIND BY ID");
+            out.println("  1 - FIND ALL");
+            out.println("  2 - CREATE");
+            out.println("  3 - UPDATE");
+            out.println("  4 - DELETE");
+            out.println(" -1 - BACK");
+
 
             Scanner scanner = new Scanner(System.in);
             input = Integer.parseInt(scanner.nextLine());
 
             if      (input == 0)
-                FindAll();
-            else if (input == 1)
                 FindById();
+            else if (input == 1)
+                FindAll();
             else if (input == 2)
                 Create();
             else if (input == 3)
@@ -236,31 +246,42 @@ public class GUIController {
     private void Create() {
         if (current == Entity.GAME)
             try {
-                GameResource.create(CreateGame());
+                ResponseEntity<gameCreateDTO> result;
+                result = GameResource.create(CreateGame());
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
+
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
         else if (current == Entity.LOCATION)
             try{
-                LocationResource.create(CreateLocation());
+                ResponseEntity<locationCreateDTO> result;
+                result = LocationResource.create(CreateLocation());
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
         else if (current == Entity.SAVEFILE)
             try{
-                SavefileResource.create(CreateSavefile());
+                ResponseEntity<savefileCreateDTO> result;
+                result = SavefileResource.create(CreateSavefile());
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
         else if (current == Entity.SOFTWARE)
             try{
-                SoftwareResource.create(CreateSoftware());
+                ResponseEntity<softwareCreateDTO> result;
+                result = SoftwareResource.create(CreateSoftware());
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
         else if (current == Entity.STUDIO)
             try{
-                StudioResource.create(CreateStudio());
+                ResponseEntity<studioCreateDTO> result;
+                result = StudioResource.create(CreateStudio());
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -272,7 +293,9 @@ public class GUIController {
             out.print("Enter id to update: ");
             int id = Integer.parseInt(Scanner.nextLine());
             try{
-                GameResource.update(CreateGame(), id);
+                ResponseEntity<gameDTO> result;
+                result = GameResource.update(CreateGame(), id);
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -281,7 +304,9 @@ public class GUIController {
             out.print("Enter id to update: ");
             int id = Integer.parseInt(Scanner.nextLine());
             try{
-                LocationResource.update(CreateLocation(), id);
+                ResponseEntity<locationDTO> result;
+                result = LocationResource.update(CreateLocation(), id);
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -290,7 +315,9 @@ public class GUIController {
             out.print("Enter id to update: ");
             int id = Integer.parseInt(Scanner.nextLine());
             try{
-                SavefileResource.update(CreateSavefile(), id);
+                ResponseEntity<savefileDTO> result;
+                result = SavefileResource.update(CreateSavefile(), id);
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -299,7 +326,9 @@ public class GUIController {
             out.print("Enter id to update: ");
             int id = Integer.parseInt(Scanner.nextLine());
             try{
-                SoftwareResource.update(CreateSoftware(), id);
+                ResponseEntity<softwareDTO> result;
+                result = SoftwareResource.update(CreateSoftware(), id);
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -308,7 +337,9 @@ public class GUIController {
             out.print("Enter id to update: ");
             int id = Integer.parseInt(Scanner.nextLine());
             try{
-                StudioResource.update(CreateStudio(), id);
+                ResponseEntity<studioDTO> result;
+                result = StudioResource.update(CreateStudio(), id);
+                out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e){
                 out.println(e.getLocalizedMessage());
             }
@@ -386,14 +417,14 @@ public class GUIController {
     private studioCreateDTO CreateStudio() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
-        out.println("Enter founding date (dd-mm-yyyy):");
+        out.println("Enter founding date (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp founding_date = new Timestamp(0);
         try {
             SimpleDateFormat newFormat = new SimpleDateFormat("dd-mm-yyyy");
             founding_date = new Timestamp((newFormat.parse(date)).getTime());
         } catch (Exception e){
-            out.println("ERROR");
+            throw new IllegalArgumentException("ERROR incorrect date format\n",e);
         }
         out.println("Enter locationID:");
         String locationID = Scanner.nextLine();
@@ -403,23 +434,23 @@ public class GUIController {
     private savefileCreateDTO CreateSavefile() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
-        out.println("Enter time of save (dd-mm-yyyy):");
+        out.println("Enter time of save (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp saved_at = new Timestamp(0);
         try {
             SimpleDateFormat newFormat = new SimpleDateFormat("dd-mm-yyyy");
             saved_at = new Timestamp((newFormat.parse(date)).getTime());
         } catch (Exception e){
-            out.println("ERROR");
+            throw new IllegalArgumentException("ERROR incorrect date format\n",e);
         }
         out.println("Enter how much % of the game is finished ( 0-100 ):");
         String percOfGameFinished = Scanner.nextLine();
         int percOfGameFinishedInt = Integer.parseInt(percOfGameFinished);
         try{
             if ( (percOfGameFinishedInt < 0) || (percOfGameFinishedInt > 100) )
-                throw new Exception("number must be 0-100");
-        } catch (Exception e) {
-            out.println("ERROR");
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR number must be 0-100\n", e);
         }
         out.println("Enter gameID:");
         String gameID = Scanner.nextLine();
@@ -429,14 +460,14 @@ public class GUIController {
     private softwareCreateDTO CreateSoftware() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
-        out.println("Enter founding date (dd-mm-yyyy):");
+        out.println("Enter founding date (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp founding_date = new Timestamp(0);
         try {
             SimpleDateFormat newFormat = new SimpleDateFormat("dd-mm-yyyy");
             founding_date = new Timestamp((newFormat.parse(date)).getTime());
         } catch (Exception e){
-            out.println("ERROR");
+            throw new IllegalArgumentException("ERROR incorrect date format\n",e);
         }
         return new softwareCreateDTO(name,founding_date);
     }
@@ -446,19 +477,19 @@ public class GUIController {
         String name = Scanner.nextLine();
         out.println("Enter hardware:");
         String hardware = Scanner.nextLine();
-        out.println("Enter release date (dd-mm-yyyy):");
+        out.println("Enter release date (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp release_date = new Timestamp(0);
         try {
             SimpleDateFormat newFormat = new SimpleDateFormat("dd-mm-yyyy");
             release_date = new Timestamp((newFormat.parse(date)).getTime());
         } catch (Exception e){
-            out.println("ERROR");
+            throw new IllegalArgumentException("ERROR incorrect date format\n",e);
         }
         out.println("Enter number on how many softwares is the game available:");
         String amount = Scanner.nextLine();
         List<Integer> softwares = new ArrayList<>();
-        out.println("Enter locations:");
+        out.println("Enter softwareIDS:");
         for (int i = 0 ; i < Integer.parseInt(amount) ; i++){
             softwares.add(Integer.parseInt(Scanner.nextLine()));
         }

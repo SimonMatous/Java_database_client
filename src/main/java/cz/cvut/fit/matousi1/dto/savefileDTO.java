@@ -46,4 +46,15 @@ public class savefileDTO {
         savefileDTO that = (savefileDTO) obj;
         return id == that.id;
     }
+
+    @Override
+    public String toString() {
+        return "savefileDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", saved_at=" + saved_at +
+                ", percOfGameFinished=" + percOfGameFinished +
+                ", game_id=" + game_id +
+                '}';
+    }
 }

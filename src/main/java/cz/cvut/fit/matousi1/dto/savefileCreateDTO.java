@@ -17,7 +17,6 @@ public class savefileCreateDTO {
     @JsonProperty("game_id")
     private final int game_id;
 
-    @JsonCreator
     public savefileCreateDTO(String name, Timestamp saved_at, int percOfGameFinished, int game_id) {
         this.name = name;
         this.saved_at = saved_at;

@@ -1,7 +1,6 @@
 package cz.cvut.fit.matousi1.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class locationCreateDTO {
@@ -13,7 +12,7 @@ public class locationCreateDTO {
     private final String address;
 
 
-    @JsonCreator
+
     public locationCreateDTO(String state, String town, String address) {
         this.state = state;
         this.town = town;
@@ -31,4 +30,5 @@ public class locationCreateDTO {
     public String getAddress() {
         return address;
     }
+
 }

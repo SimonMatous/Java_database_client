@@ -13,7 +13,6 @@ public class softwareCreateDTO {
     @JsonProperty("founded_in")
     private final Timestamp founded_in;
 
-    @JsonCreator
     public softwareCreateDTO( String software_name, Timestamp founded_in) {
 
         this.software_name = software_name;

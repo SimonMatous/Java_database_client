@@ -40,4 +40,14 @@ public class studioDTO {
         studioDTO that = (studioDTO) obj;
         return id == that.id;
     }
+
+    @Override
+    public String toString() {
+        return "studioDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", founding_date=" + founding_date +
+                ", Location_id=" + Location_id +
+                '}';
+    }
 }

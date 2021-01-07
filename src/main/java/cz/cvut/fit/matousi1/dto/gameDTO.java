@@ -52,4 +52,16 @@ public class gameDTO {
         gameDTO that = (gameDTO) obj;
         return id == that.id;
     }
+
+    @Override
+    public String toString() {
+        return "gameDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hardware='" + hardware + '\'' +
+                ", release_date=" + release_date +
+                ", software_ids=" + software_ids +
+                ", studio_id=" + studio_id +
+                '}';
+    }
 }
