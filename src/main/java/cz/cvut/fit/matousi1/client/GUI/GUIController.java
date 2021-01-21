@@ -148,32 +148,37 @@ public class GUIController {
         if (current == Entity.GAME)
             try{
                 PrintArray(GameResource.readAll().getBody());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e){
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         else if (current == Entity.LOCATION)
             try{
                 PrintArray(LocationResource.readAll().getBody());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e){
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         else if (current == Entity.SAVEFILE)
             try{
                 PrintArray(SavefileResource.readAll().getBody());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e){
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         else if (current == Entity.SOFTWARE)
             try{
                 PrintArray(SoftwareResource.readAll().getBody());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e){
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         else if (current == Entity.STUDIO)
             try{
                 PrintArray(StudioResource.readAll().getBody());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e){
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
     }
 
@@ -193,8 +198,9 @@ public class GUIController {
             try{
                 output = GameResource.readById(id);
                 out.println(output.getBody().toString());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.LOCATION){
@@ -204,8 +210,10 @@ public class GUIController {
             try{
                 output = LocationResource.readById(id);
                 out.println(output.getBody().toString());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e) {
-                out.println("ERROR");
+                //out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.SAVEFILE){
@@ -215,8 +223,9 @@ public class GUIController {
             try{
                 output = SavefileResource.readById(id);
                 out.println(output.getBody().toString());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.SOFTWARE){
@@ -226,8 +235,9 @@ public class GUIController {
             try{
                 output = SoftwareResource.readById(id);
                 out.println(output.getBody().toString());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.STUDIO){
@@ -237,8 +247,9 @@ public class GUIController {
             try{
                 output = StudioResource.readById(id);
                 out.println(output.getBody().toString());
+                out.println("Finished with exitCode: #200");
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
     }
@@ -355,7 +366,7 @@ public class GUIController {
                 result = GameResource.delete(id);
                 out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.LOCATION){
@@ -366,7 +377,7 @@ public class GUIController {
                 result = LocationResource.delete(id);
                 out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.SAVEFILE){
@@ -377,7 +388,7 @@ public class GUIController {
                 result = SavefileResource.delete(id);
                 out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.SOFTWARE){
@@ -388,7 +399,7 @@ public class GUIController {
                 result = SoftwareResource.delete(id);
                 out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
         else if (current == Entity.STUDIO){
@@ -399,14 +410,20 @@ public class GUIController {
                 result = StudioResource.delete(id);
                 out.println("Finished with exitCode: #" + result.getStatusCode().value() );
             } catch (Exception e) {
-                out.println("ERROR");
+                out.println("Finished with exitCode: #404");
             }
         }
     }
 
     private locationCreateDTO CreateLocation(){
         out.println("Enter state:");
-        String state = Scanner.nextLine();
+        String state = Scanner.nextLine();;
+        try{
+            if (state.isEmpty())
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR attribute state must not be empty \n", e);
+        }
         out.println("Enter town:");
         String town = Scanner.nextLine();
         out.println("Enter address:");
@@ -417,6 +434,12 @@ public class GUIController {
     private studioCreateDTO CreateStudio() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
+        try{
+            if (name.isEmpty())
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR attribute name must not be empty \n", e);
+        }
         out.println("Enter founding date (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp founding_date = new Timestamp(0);
@@ -434,7 +457,13 @@ public class GUIController {
     private savefileCreateDTO CreateSavefile() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
-        out.println("Enter time of save (dd-mm-yyyyThh:mm:ss):");
+        try{
+            if (name.isEmpty())
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR attribute name must not be empty \n", e);
+        }
+        out.println("Enter time of save (yyyy-dd-mmThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp saved_at = new Timestamp(0);
         try {
@@ -475,8 +504,22 @@ public class GUIController {
     private gameCreateDTO CreateGame() {
         out.println("Enter name:");
         String name = Scanner.nextLine();
+
+        try{
+            if (name.isEmpty())
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR attribute name must not be empty \n", e);
+        }
         out.println("Enter hardware:");
         String hardware = Scanner.nextLine();
+
+        try{
+            if (hardware.isEmpty())
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("ERROR attribute hardware must not be empty \n", e);
+        }
         out.println("Enter release date (dd-mm-yyyyThh:mm:ss):");
         String date = Scanner.nextLine();
         Timestamp release_date = new Timestamp(0);
